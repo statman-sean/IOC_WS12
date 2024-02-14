@@ -1,0 +1,20 @@
+---
+title: "Example Injury Surveillance Report"
+author: "Dr Sean Williams"
+params:
+  season: 2023-24
+output:
+  rmarkdown::html_document:
+    theme: paper
+    highlight: monochrome
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    fig_caption: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    always_allow_html: yes
+---
+
+
