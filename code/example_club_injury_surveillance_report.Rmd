@@ -33,6 +33,7 @@ library(janitor)
 library(stringr)
 library(ggrepel)
 library(DT)
+library(here)
 
 # set theme for plots
 theme_set(theme_bw())
@@ -42,9 +43,12 @@ to_sentence_case <- function(x) {
   str_to_sentence()
 }
 
+# Set the working directory using here()
+here::here()
+
 # Load injury and exposure data for current season 
 
-injuries <- read_excel("C:/Users/sw356/OneDrive - University of Bath/IOC_WS12/data/example_match_injury_data.xlsx") %>% 
+injuries <- read_excel(here("data", "example_match_injury_data.xlsx")) %>%  
   clean_names() %>% 
   mutate(days_absent = as.numeric(days_absent)) %>% # days absent to numeric
   mutate(across(where(is.character), str_to_sentence)) %>% # make all text sentence case
@@ -53,8 +57,7 @@ injuries <- read_excel("C:/Users/sw356/OneDrive - University of Bath/IOC_WS12/da
 
 # set overall match exposure time
 
-match_exposure <- read_excel("C:/Users/sw356/OneDrive - University of Bath/IOC_WS12/data/example_match_injury_data.xlsx", 
-    sheet = "Exposure data") %>% 
+match_exposure <- read_excel(here("data", "example_match_injury_data.xlsx"), sheet = "Exposure data") %>% 
   clean_names() %>% 
   filter(club == params$club) %>% 
   summarise(exposure_time = sum(match_exposure))
