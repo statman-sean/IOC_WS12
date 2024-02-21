@@ -17,7 +17,7 @@ output:
     always_allow_html: yes
 ---
 
-```{r results=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, results=FALSE}
 
 # load libraries - these need to be installed first
 
@@ -43,7 +43,6 @@ here::here()
 # Load and clean injury data for current season 
 
 injuries <- read_excel(here("data", "example_match_injury_data.xlsx")) %>% 
-  clean_names() %>% 
   clean_names() %>% 
   mutate(days_absent = as.numeric(days_absent)) %>% # days absent to numeric
   mutate(across(where(is.character), str_to_sentence)) %>% # make all text sentence case
